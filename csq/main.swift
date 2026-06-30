@@ -7,4 +7,15 @@
 
 import Foundation
 
+let my_stream = str_stream("""
+henlo
+hi
+asdasd
+asd
+vvb
+""")
 
+while let c = my_stream.next()
+{
+	print(c)
+}
