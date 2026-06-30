@@ -75,6 +75,20 @@ class str_stream
 		return c
 	}
 	
+	func next(_ cond: (Character) -> Bool) -> (Substring, Int)
+	{
+		let start = remainder
+		var len = 0
+		
+		while let c = peek(), cond(c)
+		{
+			len += 1
+			consume()
+		}
+		
+		return (start[..<remainder.startIndex], len)
+	}
+	
 	func peek() -> Character?
 	{
 		return remainder.first
