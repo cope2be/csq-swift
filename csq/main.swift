@@ -8,14 +8,10 @@
 import Foundation
 
 let my_stream = str_stream("""
-henlo
-hi
-asdasd
-asd
-vvb
+pub mut i32 x = 1323___123123;
+if (x == 0) {}
 """)
 
-while let c = my_stream.next()
-{
-	print(c)
-}
+let my_tokens = lexer.shared.tokenize(my_stream)
+
+print(my_tokens)
