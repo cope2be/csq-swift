@@ -97,10 +97,10 @@ final class lexer
 			
 			while let c = local_stream.next()
 			{
+				let col = local_stream.get_col() - 1
+				
 				if c.isASCII && c.isLetter
 				{
-					let col = local_stream.get_col() - 1
-					
 					tokens.append(.init(
 						kind: get_str_kind(local_stream, c),
 						col: col,
@@ -113,8 +113,6 @@ final class lexer
 				
 				if c.isNumber
 				{
-					let col = local_stream.get_col() - 1
-					
 					tokens.append(.init(
 						kind: get_int_kind(local_stream, c),
 						col: col,
@@ -143,9 +141,9 @@ final class lexer
 					
 					tokens.append(.init(
 						kind: .s_oper(s_op),
-						col: local_stream.get_col() - 1,
+						col: col,
 						line: local_line,
-						len: 2
+						len: 1
 					))
 					
 					continue
@@ -155,7 +153,7 @@ final class lexer
 				{
 					tokens.append(.init(
 						kind: .punc(pun),
-						col: local_stream.get_col() - 1,
+						col: col,
 						line: local_line,
 						len: 1
 					))
